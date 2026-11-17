@@ -54,6 +54,9 @@ public class CustomFileUtil {
         List<String> uploadNames = new ArrayList<>();
 
         for (MultipartFile multipartFile : files) {
+            if (multipartFile.isEmpty()) {
+                continue;
+            }
 
             String savedName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
 

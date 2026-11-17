@@ -50,3 +50,12 @@ interface UseCustomMoveReturn {
     size: number
     refresh: boolean
 }
+
+interface ProductDTO {
+    pno: number
+    pname: string
+    price: number
+    pdesc: string
+    uploadFileNames: string[]
+    delFlag: boolean
+}
