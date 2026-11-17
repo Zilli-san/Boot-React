@@ -1,0 +1,28 @@
+### 1. Register (run this one TWICE: gives TNO 102, then 103)
+POST http://localhost:8080/api/todo/
+Content-Type: application/json
+
+{
+  "title": "Sample Title",
+  "writer": "user1",
+  "dueDate": "2023-10-10"
+}
+
+### 2. List
+GET http://localhost:8080/api/todo/list?page=1&size=10
+
+### 3. Read one
+GET http://localhost:8080/api/todo/103
+
+### 4. Modify
+PUT http://localhost:8080/api/todo/103
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "complete": true,
+  "dueDate": "2023-05-05"
+}
+
+### 5. Delete
+DELETE http://localhost:8080/api/todo/103
