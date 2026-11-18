@@ -1,6 +1,7 @@
 import { useState } from "react"
 import ResultModal from "../common/resultModal";
 import useCustomLogin from "../../hooks/useCustomLogin";
+import KakaoLoginComponent from "./kakaoLoginComponent";
 
 function LoginComponent() {
 
@@ -58,6 +59,7 @@ function LoginComponent() {
                     </div>
                 </div>
             </div>
+            <KakaoLoginComponent />
         </div>
     )
 }

@@ -46,7 +46,9 @@ const loginSlice = createSlice({
     reducers: {
         save: (_state, action: PayloadAction<LoginInfo>) => {
             console.log("save")
-            return action.payload
+            const newState: LoginInfo = { ...action.payload, status: 'saved' }
+            setCookie("member", JSON.stringify(newState), 1)
+            return newState
         },
         logout: () => {
             console.log("logout")
