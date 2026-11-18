@@ -1,4 +1,4 @@
-import axios from "axios";
+import jwtAxios from "../../util/jwtUtil";
 import type { AxiosResponse } from "axios";
 import { useActionState, useState } from "react";
 import type { MouseEvent } from "react";
@@ -28,9 +28,9 @@ const modifyDeleteAsyncAction = async (_state: ProductTaskResult, formData: Form
 
     try {
         if (actionType === 'modify') {
-            res = await axios.put(`${API_SERVER_HOST}/api/products/${pno}`, formData)
+            res = await jwtAxios.put(`${API_SERVER_HOST}/api/products/${pno}`, formData)
         } else if (actionType === 'delete') {
-            res = await axios.delete(`${API_SERVER_HOST}/api/products/${pno}`)
+            res = await jwtAxios.delete(`${API_SERVER_HOST}/api/products/${pno}`)
         }
     } catch (e) {
         console.error(e)

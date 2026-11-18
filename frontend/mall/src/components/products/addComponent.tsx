@@ -1,4 +1,4 @@
-import axios from "axios"
+import jwtAxios from "../../util/jwtUtil"
 import { useActionState } from "react"
 import { API_SERVER_HOST } from "../../api/todoApi"
 import useCustomMove from "../../hooks/useCustomMove"
@@ -23,7 +23,7 @@ const addAsyncAction = async (_state: ProductAddResult, formData: FormData): Pro
     }
 
     try {
-        const res = await axios.post(`${API_SERVER_HOST}/api/products/`, formData)
+        const res = await jwtAxios.post(`${API_SERVER_HOST}/api/products/`, formData)
         return { result: res.data.RESULT }
     } catch (e) {
         console.error(e)

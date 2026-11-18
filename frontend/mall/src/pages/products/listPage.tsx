@@ -1,11 +1,6 @@
-import { useLoaderData } from "react-router";
 import ListComponent from "../../components/products/listComponent";
 
 const ListPage = () => {
-
-    const pageResponse = useLoaderData() as PageResponseDTO<ProductDTO>
-
-    console.log(pageResponse)
 
     return (
         <div className="w-full mt-4 border border-solid border-neutral-300 shadow-md">
@@ -13,7 +8,7 @@ const ListPage = () => {
                 Products List Page
             </div>
 
-            <ListComponent serverData={pageResponse} />
+            <ListComponent />
         </div>
     );
 }

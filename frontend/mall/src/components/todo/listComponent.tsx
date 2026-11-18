@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { getList } from "../../api/todoApi"
 import useCustomMove from "../../hooks/useCustomMove"
+import useCustomLogin from "../../hooks/useCustomLogin"
 import PageComponent from "../common/pageComponent"
+import FetchingModal from "../common/fetchingModal"
 
 const initState: PageResponseDTO<Todo> = {
     dtoList: [],
@@ -18,19 +20,33 @@ const initState: PageResponseDTO<Todo> = {
 
 const ListComponent = () => {
 
-    const { page, size, refresh, moveToRead, moveToList } = useCustomMove()
+    const { exceptionHandle } = useCustomLogin()
+
+    const { page, size, refresh, moveToList, moveToRead } = useCustomMove()
 
     const [serverData, setServerData] = useState<PageResponseDTO<Todo>>(initState)
 
+    const [fetching, setFetching] = useState(false)
+
     useEffect(() => {
+
+        setFetching(true)
+
         getList({ page, size }).then(data => {
             console.log(data)
             setServerData(data)
+            setFetching(false)
+        }).catch(err => {
+            setFetching(false)
+            exceptionHandle(err)
         })
+
     }, [page, size, refresh])
 
     return (
         <div className="border-2 border-blue-100 mt-10 mr-2 ml-2">
+
+            {fetching && <FetchingModal />}
 
             <div className="flex flex-wrap mx-auto justify-center p-6">
                 {serverData.dtoList.map(todo =>

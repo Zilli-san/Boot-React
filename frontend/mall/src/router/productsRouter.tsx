@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Navigate } from "react-router"
-import { loadProduct, loadProducts } from "../api/productsApi"
+import { loadProduct } from "../api/productsApi"
 
 const ProductsIndex = lazy(() => import("../pages/products/indexPage"))
 const ProductsList = lazy(() => import("../pages/products/listPage"))
@@ -19,8 +19,7 @@ export default function productsRouter() {
             children: [
                 {
                     path: "list",
-                    element: <Suspense fallback={<Loading/>}><ProductsList/></Suspense>,
-                    loader: loadProducts
+                    element: <Suspense fallback={<Loading/>}><ProductsList/></Suspense>
                 },
                 {
                     path: "add",
